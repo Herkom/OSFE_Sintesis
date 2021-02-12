@@ -136,3 +136,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+#PAT de la Predator
+predatorWork_PAT.txt
