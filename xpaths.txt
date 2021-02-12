@@ -1,0 +1,15 @@
+#TABASCO_HOY
+
+page = 'https://www.tabascohoy.com/'
+    links = '//h2[contains(@class,"zox-s-title")]/../@href'
+        title = '//div[@class="zox-auto-post-main"]/article[1]//div[contains(@class, "zox-post-title-wrap")]//header//h1/text()'
+        summary = '//div[@class="zox-auto-post-main"]/article[1]//div[contains(@class, "zox-post-title-wrap")]//header//span/p/text()'
+        publication_date = '//div[@class="zox-auto-post-main"]/article[1]//div[contains(@class, "zox-post-title-wrap")]//header//meta/@content'
+        content = '//div[@class="zox-auto-post-main"]/article[1]//div[contains(@class,"zox-article-wrap")]/div[@class="zox-post-main-grid"]//div[contains(@class, "zox-post-body ")]//*[not(contains(@class, "jp-related"))]//text()'
+
+
+#DIARIO_DE_TABASCO
+
+page = 'http://www.diariodetabasco.mx/'
+    links = '//div/h1/a'
+    slider_links = '//div[@class="slick-track"]/div/div/a'
