@@ -1,0 +1,9 @@
+#XEVT
+
+page = 'https://www.xevt.com/'
+    links = ''//h5/a/@href[not(contains(.,"javascript"))] | //h6/a/@href[not(contains(.,"javascript"))] | //h2/../../@href[not(contains(.,"javascript"))] | //h6/../../@href[not(contains(.,"javascript"))]''
+    #Después eliminar los repetidos
+
+    titles = '//h1[@class="post__title"]/text()'
+    date_and_author = '//div[@class="post__author"]/span/text() | //div[@class="post__author"]/text()[2]'
+    content = '//div[@class="post__content"][1]/p//text()'
