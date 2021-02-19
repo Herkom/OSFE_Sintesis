@@ -1,7 +1,7 @@
 #XEVT
 
 page = 'https://www.xevt.com/'
-    links = ''//h5/a/@href[not(contains(.,"javascript"))] | //h6/a/@href[not(contains(.,"javascript"))] | //h2/../../@href[not(contains(.,"javascript"))] | //h6/../../@href[not(contains(.,"javascript"))]''
+    links = '//h5/a/@href[not(contains(.,"javascript"))] | //h6/a/@href[not(contains(.,"javascript"))] | //h2/../../@href[not(contains(.,"javascript"))] | //h6/../../@href[not(contains(.,"javascript"))]'
     #Después eliminar los repetidos
 
     titles = '//h1[@class="post__title"]/text()'
