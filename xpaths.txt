@@ -9,6 +9,7 @@ page = 'https://www.tabascohoy.com/'
 
 
 
+
 #DIARIO_DE_TABASCO
 
 page = 'http://www.diariodetabasco.mx/'
@@ -18,6 +19,7 @@ page = 'http://www.diariodetabasco.mx/'
 
     ALL_links = '//div[contains(@class, "container") and contains(@class, "general_wrap")]//a/@href[contains(.,"diariodetabasco")]'
     // Eliminar los repetidos
+
 
 
 
@@ -33,6 +35,7 @@ page = 'https://www.xevt.com/'
 
 
 
+
 #XEVA
 
 page = 'http://xeva.com.mx/'
@@ -43,3 +46,54 @@ page = 'http://xeva.com.mx/'
     title = '//table[@id="contenido"]//tbody/tr/td//h1'
     date_and_author = '//table[@id="contenido"]//tbody/tr/td//div[@class="fadoce" and not(@style)]'
     content = '//table[@id="contenido"]//tbody/tr/td//div[@id="contenido-nota"]'
+
+
+
+
+#GRUPO VX
+
+page = 'https://www.grupovx.com/'
+    links = '//article[contains(@id,"post")]/h2/a'
+
+    title = '//div[@id="content-area"]//article[contains(@id,"post")]//h1/text()'
+    author = '//div[@id="content-area"]//article[contains(@id,"post")]//span[contains(@class,"author")]/a/text()'
+    content_and_date = '//div[@id="content-area"]//article[contains(@id,"post")]//div[@class="entry-content"]/p//text()'
+
+
+
+
+#HERALDO DE TABASCO
+
+page = 'https://www.elheraldodetabasco.com.mx/'
+    links = '//h4/a'
+    
+    title = '//section//h1[@class="title"]/text()'
+    date = '//section//p[@class="published-date"]/text()'
+    summary = '//section//h3[@class="subtitle"]/text()'
+    author = '//section//div[contains(@class,"affix-start")]/p/text()'
+    content = '//section//*[contains(@class,"content")]//p/text()'
+
+
+
+
+#NOVEDADES DE TABASCO
+
+page = 'https://novedadesdetabasco.com.mx/'
+    links = '//h2//a| //h3//a'
+
+    title = '//div[contains(@class,"content")]//article//div[@class="post-inner"]/h1/*/text()'
+    author = '//div[contains(@class,"content")]//article//div[@class="post-inner"]//*[contains(@class,"author")]//a'
+    content = '//div[contains(@class,"content")]//article//div[@class="post-inner"]//div[@class="entry"]/p'
+
+
+
+
+#RUMBO NUEVO
+
+page = 'https://www.rumbonuevo.com.mx/'
+    links = '//a'
+
+    title = '//header/h1/text()'
+    date = '//header//div//span/time/text()'
+    author = '//header//div//span/a/text()'
+    content = '//div[contains(@id,"content-main")]/p'
