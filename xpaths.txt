@@ -20,6 +20,11 @@ page = 'http://www.diariodetabasco.mx/'
     ALL_links = '//div[contains(@class, "container") and contains(@class, "general_wrap")]//a/@href[contains(.,"diariodetabasco")]'
     // Eliminar los repetidos
 
+    title = '//h1'
+    date_and_author = '//div[@class="autoria-post"]//span/text()'
+    summary = '//div[@class="post-content"]//div[contains(@class,"info-post")]//h2/text()'
+    content = '//div[@class="post-content"]//div[contains(@class,"info-post")]//p//text()'
+
 
 
 
@@ -50,7 +55,7 @@ page = 'http://xeva.com.mx/'
 
 
 
-#GRUPO VX
+#GRUPO_VX
 
 page = 'https://www.grupovx.com/'
     links = '//article[contains(@id,"post")]/h2/a'
@@ -62,7 +67,7 @@ page = 'https://www.grupovx.com/'
 
 
 
-#HERALDO DE TABASCO
+#HERALDO_DE_TABASCO
 
 page = 'https://www.elheraldodetabasco.com.mx/'
     links = '//h4/a'
@@ -76,7 +81,7 @@ page = 'https://www.elheraldodetabasco.com.mx/'
 
 
 
-#NOVEDADES DE TABASCO
+#NOVEDADES_DE_TABASCO
 
 page = 'https://novedadesdetabasco.com.mx/'
     links = '//h2//a| //h3//a'
@@ -88,7 +93,7 @@ page = 'https://novedadesdetabasco.com.mx/'
 
 
 
-#RUMBO NUEVO
+#RUMBO_NUEVO
 
 page = 'https://www.rumbonuevo.com.mx/'
     links = '//a'
@@ -97,3 +102,30 @@ page = 'https://www.rumbonuevo.com.mx/'
     date = '//header//div//span/time/text()'
     author = '//header//div//span/a/text()'
     content = '//div[contains(@id,"content-main")]/p'
+
+
+
+
+#PRESENTE
+
+page = 'https://www.diariopresente.mx/'
+    links = '//*[contains(@class,"caption") or contains(@class,"top-stories")]//a'
+
+    title = '//article/div[@class="detail"]/div[@class="caption"]/text()'
+    date_and_author = '//article/div[@class="detail"]/div[@class="info"]//text()'
+    content = '//article/div[@class="description"]/p//text()'
+
+
+
+
+#LA_VERDAD_DEL_SURESTE
+
+page = 'https://www.la-verdad.com.mx/'
+    links = '//h1/a | //h3/a | //p/a | //div/i/following-sibling::a'
+
+    title = '//div[@class="magazine-news"]//h1/text()'
+    summary = '//div[@class="magazine-news"]//p[@class="lead text-danger"]/text()'
+    author = '//div[@class="magazine-news"]//p[@class="text-warning"]/text()'
+    content = '//div[@class="magazine-news"]//div[not(@class="row")]/br/../text()'
+
+    // Verificar que en caso de algunos articulos el path del contenido no funcionaría
