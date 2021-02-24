@@ -121,7 +121,7 @@ page = 'https://www.diariopresente.mx/'
 #LA_VERDAD_DEL_SURESTE
 
 page = 'https://www.la-verdad.com.mx/'
-    links = '//h1/a | //h3/a | //p/a | //div/i/following-sibling::a'
+    links = '//h1/a/@href | //h3/a/@href | //p/a/@href | //div/i/following-sibling::a/@href'
 
     title = '//div[@class="magazine-news"]//h1/text()'
     summary = '//div[@class="magazine-news"]//p[@class="lead text-danger"]/text()'
@@ -129,3 +129,15 @@ page = 'https://www.la-verdad.com.mx/'
     content = '//div[@class="magazine-news"]//div[not(@class="row")]/br/../text()'
 
     // Verificar que en caso de algunos articulos el path del contenido no funcionaría
+
+
+
+
+#TVT_CORAT
+
+page = 'https://corat.mx/noticias/'
+    links = '//li//h5/a | //div[contains(@class,"slider") and contains(@class,"wrapper")]//ul/li/@data-link'
+
+    title = '//h2[@class="entry-title"]/text()'
+    date = '//span//time/text()'
+    content = '//div[@class="the_content_wrapper"]//*//text()'
