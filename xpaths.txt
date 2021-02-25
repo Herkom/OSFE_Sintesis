@@ -2,6 +2,7 @@
 
 page = 'https://www.tabascohoy.com/'
     links = '//h2[contains(@class,"zox-s-title")]/../@href'
+
         title = '//div[@class="zox-auto-post-main"]/article[1]//div[contains(@class, "zox-post-title-wrap")]//header//h1/text()'
         summary = '//div[@class="zox-auto-post-main"]/article[1]//div[contains(@class, "zox-post-title-wrap")]//header//span/p/text()'
         publication_date = '//div[@class="zox-auto-post-main"]/article[1]//div[contains(@class, "zox-post-title-wrap")]//header//meta/@content'
@@ -17,7 +18,7 @@ page = 'http://www.diariodetabasco.mx/'
     slider_links = '//div[@class="slick-track"]/div/div/a'
 
 
-    ALL_links = '//div[contains(@class, "container") and contains(@class, "general_wrap")]//a/@href[contains(.,"diariodetabasco")]'
+    ALL_links = '//div[contains(@class, "container") and contains(@class, "general_wrap")]//a/@href[contains(.,"diariodetabasco") and not(contains(.,"https://twitter.com/share?")) and not(contains(.,"https://www.youtube.com/user/")) ]'
     // Eliminar los repetidos
 
     title = '//h1'
@@ -45,7 +46,7 @@ page = 'https://www.xevt.com/'
 
 page = 'http://xeva.com.mx/'
 
-    links = '//a'
+    links = '//a/@href[contains(.,"nota")]'
     // Después eliminar los repetidos
 
     title = '//table[@id="contenido"]//tbody/tr/td//h1'

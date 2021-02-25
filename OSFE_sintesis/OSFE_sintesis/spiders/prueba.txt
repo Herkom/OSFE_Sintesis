@@ -1,0 +1,74 @@
+import scrapy
+
+class SpiderOSFESintesis(scrapy.Spider):
+    name = 'osfeSintesis'
+    start_urls = [
+        'https://www.tabascohoy.com/',
+        'http://www.diariodetabasco.mx/',
+        'https://www.xevt.com/',
+        'http://xeva.com.mx/',
+        'https://www.grupovx.com/',
+        'https://www.elheraldodetabasco.com.mx/',
+        'https://novedadesdetabasco.com.mx/',
+        'https://www.rumbonuevo.com.mx/',
+        'https://www.diariopresente.mx/',
+        'https://www.la-verdad.com.mx/',
+        'https://corat.mx/noticias/'
+    ]
+
+    custom_setting = {
+        'FEEDS':{
+            'osfe_sintesis.json':{
+                'format': 'json',
+                'encoding': 'utf8',
+                'indent': 4,
+            }
+        }
+    }
+
+    def parse(self, response):
+
+        uerreles = [
+            'https://www.tabascohoy.com/',
+            'http://www.diariodetabasco.mx/',
+            'https://www.xevt.com/',
+            'http://xeva.com.mx/',
+            'https://www.grupovx.com/',
+            'https://www.elheraldodetabasco.com.mx/',
+            'https://novedadesdetabasco.com.mx/',
+            'https://www.rumbonuevo.com.mx/',
+            'https://www.diariopresente.mx/',
+            'https://www.la-verdad.com.mx/',
+            'https://corat.mx/noticias/'
+        ]
+
+        links_declassified = []
+
+        if response.url == uerreles[0]:
+            links_declassified = links_declassified.append(response.xpath('//h2[contains(@class,"zox-s-title")]/../@href').getall())
+        elif response.url == uerreles[1]:
+            links_declassified = links_declassified.append(response.xpath('//div/h1/a/@href').getall())
+        elif response.url == uerreles[2]:
+            links_declassified = links_declassified.append(response.xpath('//h5/a/@href[not(contains(.,"javascript"))] | //h6/a/@href[not(contains(.,"javascript"))] | //h2/../../@href[not(contains(.,"javascript"))] | //h6/../../@href[not(contains(.,"javascript"))]').getall())
+        elif response.url == uerreles[3]:
+            links_declassified = links_declassified.append(response.xpath('//a/@href').getall())
+        elif response.url == uerreles[4]:
+            links_declassified = links_declassified.append(response.xpath('//article[contains(@id,"post")]/h2/a/@href').getall())
+        elif response.url == uerreles[5]:
+            links_declassified = links_declassified.append(response.xpath('//h4/a/@href').getall())
+        elif response.url == uerreles[6]:
+            links_declassified = links_declassified.append(response.xpath('//h2//a/@href|//h3//a/@href').getall())
+        elif response.url == uerreles[7]:
+            links_declassified = links_declassified.append(response.xpath('//a/@href').getall())
+        elif response.url == uerreles[8]:
+            links_declassified = links_declassified.append(response.xpath('//*[contains(@class,"caption") or contains(@class,"top-stories")]//a/@href').getall())
+        elif response.url == uerreles[9]:
+            links_declassified = links_declassified.append(response.xpath('//h1/a/@href | //h3/a/@href | //p/a/@href | //div/i/following-sibling::a/@href').getall())
+        elif response.url == uerreles[10]:
+            links_declassified = links_declassified.append(response.xpath('//li//h5/a/@href | //div[contains(@class,"slider") and contains(@class,"wrapper")]//ul/li/@data-link').getall())
+
+        
+        for link in links_declassified or []:
+            yield {
+                'url': link
+            }
