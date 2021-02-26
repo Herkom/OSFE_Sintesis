@@ -1,11 +1,6 @@
 import scrapy
 
-class SpiderOSFESintesis(scrapy.Spider):
-
-    name = 'osfeSintesis'
-
-    global newspapers
-    newspapers = [
+newspapers = [
             {
                 'name': 'Tabasco Hoy',
                 'sourceURL': 'https://www.tabascohoy.com/',
@@ -124,6 +119,10 @@ class SpiderOSFESintesis(scrapy.Spider):
             },
     ]
 
+class SpiderOSFESintesis(scrapy.Spider):
+
+    name = 'osfeSintesis'
+
     start_urls = [ sub['sourceURL'] for sub in newspapers ]
 
     custom_settings = {
@@ -148,7 +147,13 @@ class SpiderOSFESintesis(scrapy.Spider):
 
                     depurated_links = list(dict.fromkeys(link))
 
-                    yield {
-                        'origin': paper['name'],
-                        'url': depurated_links
-                    }
+                    for depurado in depurated_links:
+                        yield response.follow(depurado, callback=self.parse_links, cb_kwargs={'url': depurado})
+
+    
+    def parse_links(self, response, **kwargs):
+
+        algo = kwargs['url']
+        yield{
+            'algo': algo
+        }
