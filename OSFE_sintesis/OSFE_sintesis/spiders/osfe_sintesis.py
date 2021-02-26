@@ -148,12 +148,13 @@ class SpiderOSFESintesis(scrapy.Spider):
                     depurated_links = list(dict.fromkeys(link))
 
                     for depurado in depurated_links:
-                        yield response.follow(depurado, callback=self.parse_links, cb_kwargs={'url': depurado})
+                        yield response.follow(depurado, callback=self.parse_links, cb_kwargs={'origin': paper['name']})
 
     
     def parse_links(self, response, **kwargs):
 
-        algo = kwargs['url']
-        yield{
-            'algo': algo
-        }
+        origin = kwargs['origin']
+
+        for paper in newspapers:
+            if origin == paper['name']
+                paper['body'].values()
