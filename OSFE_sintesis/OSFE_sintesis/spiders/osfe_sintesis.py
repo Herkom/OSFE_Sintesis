@@ -17,7 +17,7 @@ newspapers = [
         'sourceURL': 'http://www.diariodetabasco.mx/',
         'links': '//div[contains(@class, "container") and contains(@class, "general_wrap")]//a/@href[contains(.,"diariodetabasco") and not(contains(.,"https://twitter.com/share?")) and not(contains(.,"https://www.youtube.com/user/")) ]',
         'body': {
-            'title': '//h1',
+            'title': '//h1//text()',
             'date_and_or_author' :'//div[contains(@class,"autoria-post")]//span//text()',
             'summary': '//div[@class="post-content"]//div[contains(@class,"info-post")]//h2/text()',
             'content': '//div[@class="post-content"]//div[contains(@class,"info-post")]//p//text()',
