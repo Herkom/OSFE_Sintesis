@@ -120,7 +120,8 @@ newspapers = [
 class SpiderOSFESintesis(scrapy.Spider):
 
     name = 'osfeSintesis'
-
+    
+    # make an array with all the urls that will be scraped
     start_urls = [ sub['sourceURL'] for sub in newspapers ]
 
     custom_settings = {
@@ -136,17 +137,20 @@ class SpiderOSFESintesis(scrapy.Spider):
     def parse(self, response):
 
         links_declassified = []
+        unrepeated_links = []
 
+        # Store all the links founded from each of the sources 
         for paper in newspapers:
             if response.url == paper['sourceURL']:
                 links_declassified.append(response.xpath(paper['links']).getall())
+        
+            # Clean up the repeated links and store them in a new array
+            for link in links_declassified or []:
+                unrepeated_links = list(dict.fromkeys(link))
 
-                for link in links_declassified or []:
-
-                    depurated_links = list(dict.fromkeys(link))
-
-                    for depurado in depurated_links:
-                        yield response.follow(depurado, callback=self.parse_links, cb_kwargs={'origin': paper['name']})
+            # Send each of the unrepeated links to be scraped
+            for unrepeated in unrepeated_links:
+                yield response.follow(unrepeated, callback=self.parse_links, cb_kwargs={'origin': paper['name']})
 
     
     def parse_links(self, response, **kwargs):
@@ -157,12 +161,21 @@ class SpiderOSFESintesis(scrapy.Spider):
             if origin == paper['name']:
                 estructura = {}
                 elementos = paper['body']
+
                 estructura['origen'] = origin
                 estructura['link'] = response.url
 
                 for element in elementos:
                     estructura[str(element)] = response.xpath(elementos[element]).getall()
-                
+
                 yield {
                     'article' : estructura
                 }
+
+                """for paragraph in estructura['content']:
+                    if paragraph.count('ministro') > 0:
+                        print(f"{paragraph}" )
+                
+                        yield {
+                            'article' : estructura
+                        } """
